@@ -27,10 +27,7 @@ const tokenCache = {
     }
   }
 }
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -72,11 +69,11 @@ function RootLayoutNav() {
   const router = useRouter();
   const {isLoaded, isSignedIn} = useAuth()
 
-  useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push('/(modals)/login');
-    }
-  }, [isLoaded]);
+  // useEffect(() => {
+  //   if (isLoaded && !isSignedIn) {
+  //     router.push('/(modals)/login');
+  //   }
+  // }, [isLoaded]);
   return (  
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

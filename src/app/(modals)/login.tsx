@@ -10,7 +10,7 @@ import { useRouter } from 'expo-router';
 enum Strategy{
   Google = 'oauth_google',
   Apple = 'oauth_apple',
-  Facebook = 'oauth_facebook',
+  Facebook = 'oauth_github',
 }
 
 const Login = () => {
@@ -19,13 +19,13 @@ const Login = () => {
   const router = useRouter();
   const {startOAuthFlow: googleAuth} = useOAuth({strategy: 'oauth_google'});
   const {startOAuthFlow: appleAuth} = useOAuth({strategy: 'oauth_apple'});
-  const {startOAuthFlow: facebookAuth} = useOAuth({strategy: 'oauth_facebook'});
+  const {startOAuthFlow: githubAuth} = useOAuth({strategy: 'oauth_github'});
 
   const onSelectAuth = async (strategy: Strategy) => {
     const selectedAuth = {
       [Strategy.Google]: googleAuth,
       [Strategy.Apple]: appleAuth,
-      [Strategy.Facebook]: facebookAuth,
+      [Strategy.Facebook]: githubAuth,
     }[strategy]
     try {
       const {createdSessionId, setActive} = await selectedAuth();
