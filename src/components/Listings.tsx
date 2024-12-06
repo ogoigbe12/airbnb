@@ -5,18 +5,31 @@ import { Link } from 'expo-router'
 import { Listing } from '../interface/listing'
 import { Ionicons } from '@expo/vector-icons'
 import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
+import { BottomSheetFlatList, BottomSheetFlatListMethods } from '@gorhom/bottom-sheet';
 
 interface Props {
     listings: any[]
+    refresh: number;
     category: string
 }
-const Listings = ({listings:items,category}: Props) => {
+const Listings = ({listings:items, refresh,category}: Props) => {
     const [loading, setLoading] = useState(false);
-    const listRef = useRef<FlatList>(null);
+    const listRef = useRef<BottomSheetFlatListMethods>(null);
 
+     // Update the view to scroll the list back top
+  useEffect(() => {
+    if (refresh) {
+      scrollListTop();
+    }
+  }, [refresh]);
 
+  const scrollListTop = () => {
+    listRef.current?.scrollToOffset({ offset: 0, animated: true });
+  };
+
+   // Use for "updating" the views data after category changed
     useEffect(() => {
-        console.log('Reload', items.length)
+        // console.log('Reload', items.length)
         setLoading(true)
 
         setTimeout(() => {
@@ -51,10 +64,11 @@ const Listings = ({listings:items,category}: Props) => {
 
   return (
     <View style={defaultStyles.container}>
-      <FlatList
+      <BottomSheetFlatList
       renderItem={renderRow}
       ref={listRef}
       data={loading ? [] : items }
+      ListHeaderComponent={<Text style={styles.info}>{items.length} homes</Text>}
       />
     </View>
   )
