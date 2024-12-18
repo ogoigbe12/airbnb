@@ -3,9 +3,9 @@ import React from 'react'
 
 const Trips = () => {
   return (
-    <View>
-      <Text>Trips</Text>
-    </View>
+    <View style={{flex:1,justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{fontFamily: 'mon-b', fontSize: 20}}>Trips Coming Soon</Text>
+        </View>
   )
 }
 

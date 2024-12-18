@@ -3,9 +3,9 @@ import React from 'react'
 
 const Wishlists = () => {
   return (
-    <View>
-      <Text>Wishlists</Text>
-    </View>
+  <View style={{flex:1,justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontFamily: 'mon-b', fontSize: 20}}>Wishlists Coming Soon</Text>
+      </View>
   )
 }
 
