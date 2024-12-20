@@ -58,25 +58,29 @@ const Booking = () => {
   };
   return (
     <BlurView intensity={70} style={styles.container} tint="light">
+      <ScrollView 
+    contentContainerStyle={{ paddingBottom: 150 }} 
+    showsVerticalScrollIndicator={false}
+  >
       {/* where */}
       <View style={styles.card}>
         {openCard != 0 && (
-          <AnimatedTouchableOpacity
+          <TouchableOpacity
             onPress={() => setOpenCard(0)}
             style={styles.cardPreview}
-            entering={FadeIn.duration(200)}
-            exiting={FadeOut.duration(200)}
+            // entering={FadeIn.duration(200)}
+            // exiting={FadeOut.duration(200)}
           >
             <Text style={styles.previewText}>Where</Text>
             <Text style={styles.previewdData}>I'm flexible</Text>
-          </AnimatedTouchableOpacity>
+          </TouchableOpacity>
         )}
 
         {openCard == 0 && <Text style={styles.cardHeader}>Where to?</Text>}
         {openCard == 0 && (
-          <Animated.View
-            entering={FadeIn}
-            exiting={FadeOut}
+          <View
+            // entering={FadeIn}
+            // exiting={FadeOut}
             style={[styles.cardBody, { paddingBottom: 20 }]}
           >
             <View style={styles.searchSection}>
@@ -117,21 +121,21 @@ const Booking = () => {
                 </TouchableOpacity>
               ))}
             </ScrollView>
-          </Animated.View>
+          </View>
         )}
       </View>
       {/* When */}
       <View style={styles.card}>
         {openCard != 1 && (
-          <AnimatedTouchableOpacity
+          <TouchableOpacity
             onPress={() => setOpenCard(1)}
             style={styles.cardPreview}
-            entering={FadeIn.duration(200)}
-            exiting={FadeOut.duration(200)}
+            // entering={FadeIn.duration(200)}
+            // exiting={FadeOut.duration(200)}
           >
             <Text style={styles.previewText}>When</Text>
             <Text style={styles.previewdData}>Any week</Text>
-          </AnimatedTouchableOpacity>
+          </TouchableOpacity>
         )}
 
         {openCard == 1 && (
@@ -139,7 +143,7 @@ const Booking = () => {
         )}
 
         {openCard == 1 && (
-          <Animated.View style={styles.cardBody}>
+          <View style={styles.cardBody}>
             <DatePicker
               options={{
                 defaultFont: "mon",
@@ -151,27 +155,27 @@ const Booking = () => {
               selected={today}
               mode={"calendar"}
             />
-          </Animated.View>
+          </View>
         )}
       </View>
       {/* Guests */}
       <View style={styles.card}>
         {openCard != 2 && (
-          <AnimatedTouchableOpacity
+          <TouchableOpacity
             onPress={() => setOpenCard(2)}
             style={styles.cardPreview}
-            entering={FadeIn.duration(200)}
-            exiting={FadeOut.duration(200)}
+            // entering={FadeIn.duration(200)}
+            // exiting={FadeOut.duration(200)}
           >
             <Text style={styles.previewText}>Who</Text>
             <Text style={styles.previewdData}>Add guests</Text>
-          </AnimatedTouchableOpacity>
+          </TouchableOpacity>
         )}
 
         {openCard == 2 && <Text style={styles.cardHeader}>Who's coming?</Text>}
 
         {openCard == 2 && (
-          <Animated.View style={styles.cardBody}>
+          <View style={styles.cardBody}>
             {groups.map((item, index) => (
               <View
                 key={index}
@@ -246,11 +250,12 @@ const Booking = () => {
                 </View>
               </View>
             ))}
-          </Animated.View>
+          </View>
         )}
       </View>
+      </ScrollView>
       {/* footer */}
-      <Animated.View style={defaultStyles.footer}>
+      <View style={styles.footer}>
         <View
           style={{
             flexDirection: "row",
@@ -286,7 +291,7 @@ const Booking = () => {
             <Text style={defaultStyles.btnText}>Search</Text>
           </TouchableOpacity>
         </View>
-      </Animated.View>
+      </View>
     </BlurView>
   );
 };
@@ -380,5 +385,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: Colors.grey,
   },
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    backgroundColor: "#fff",
+    padding: 20,
+    elevation: 4,
+  },
+  
+  
 });
 export default Booking;
